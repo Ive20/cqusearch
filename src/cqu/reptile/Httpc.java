@@ -3,7 +3,7 @@ package cqu.reptile;
 import org.htmlparser.Parser;
 import org.htmlparser.filters.*;
 import org.htmlparser.nodes.TagNode;
-import org.htmlparser.tags.LinkTag;
+import org.htmlparser.tags.*;
 import org.htmlparser.Node;
 import org.htmlparser.NodeFilter;
 import org.htmlparser.util.NodeList;
@@ -27,9 +27,24 @@ public class Httpc {
 	{
 	   
 		NodeList nodeList=null;
+		NodeList textli=null;
 		  try {
 				URL pageURL = new URL(url);
-			     Parser parser = new Parser(pageURL.openConnection());  
+			     Parser parser = new Parser(pageURL.openConnection());
+			     textli=parser.extractAllNodesThatMatch(new NodeFilter()
+			     {
+			    	 public boolean accept(Node node)
+			    	 {
+			    		 if(node instanceof ParagraphTag|node instanceof TitleTag)
+			    		 {
+			    			 return true;
+			    		 }
+			    		 else
+			    		 {
+			    			 return false; 
+			    		 }
+			    	 }
+			     });
 			 nodeList = parser
 			           .extractAllNodesThatMatch(new NodeFilter()
 			           {
@@ -79,7 +94,7 @@ public class Httpc {
 		{
 			return null;
 		}
-		final Pattern pattern = Pattern.compile("href=\"/|news\\.cqu\\.edu\\.cn|202\\.202\\.0\\.35");  
+		final Pattern pattern = Pattern.compile("href=\"/|news\\.cqu\\.edu\\.cn|202\\.202\\.0\\.31");  
 		List reurlli=new ArrayList();
 		for(int i=0;i<urlli.size();i++)
 		{

@@ -9,7 +9,7 @@ public class Reptile {
 		Httpc httpc=new Httpc();
 		//Repdatadao re=new Repdatadao();
 		//re.inurl("aa", "bb");
-		httpc.startpage("http://news.cqu.edu.cn");
+		httpc.startpage("http://news.cqu.edu.cn/news/article/article_48156.html");
 	}
 
 }
