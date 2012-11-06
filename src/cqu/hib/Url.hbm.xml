@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-11-3 15:21:06 by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="cqu.hib.Url" table="url" catalog="cqusearch">
+        <id name="urlid" type="java.lang.Integer">
+            <column name="urlid" />
+            <generator class="identity" />
+        </id>
+        <property name="url" type="string">
+            <column name="url" length="100" />
+        </property>
+        <property name="keyword" type="string">
+            <column name="keyword" length="65535" />
+        </property>
+        <property name="datatime" type="timestamp">
+            <column name="datatime" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>
