@@ -14,8 +14,6 @@ public class Repdatadao {
 	{
 		Configuration config = new Configuration();  
         config.configure();  
-             // 如果hibernate.cfg.xml中没有配置的某些属性，你可以通过config.setProperty(propertyName, value);来配置.  
-        //如config.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");  
         @SuppressWarnings("deprecation")
 		SessionFactory factory = config.buildSessionFactory();  
         Session session = factory.openSession();  

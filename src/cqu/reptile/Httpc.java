@@ -17,11 +17,12 @@ import java.util.regex.*;
 import java.io.*;
 import java.net.*;
 
-public class Httpc {
-	public static HashSet urlset;
-	public Httpc()
+public class Httpc implements Runnable {
+	public static HashSet urlset=new HashSet();
+	String url;
+	public Httpc(String url)
 	{
-		urlset=new HashSet();
+		this.url=url;
 	}
 	public NodeList getli(String url,final Pattern pattern )
 	{
@@ -31,20 +32,6 @@ public class Httpc {
 		  try {
 				URL pageURL = new URL(url);
 			     Parser parser = new Parser(pageURL.openConnection());
-			     textli=parser.extractAllNodesThatMatch(new NodeFilter()
-			     {
-			    	 public boolean accept(Node node)
-			    	 {
-			    		 if(node instanceof ParagraphTag|node instanceof TitleTag)
-			    		 {
-			    			 return true;
-			    		 }
-			    		 else
-			    		 {
-			    			 return false; 
-			    		 }
-			    	 }
-			     });
 			 nodeList = parser
 			           .extractAllNodesThatMatch(new NodeFilter()
 			           {
@@ -59,6 +46,10 @@ public class Httpc {
 				            	   		return true;
 			            	   		}
 			            	   }
+			               if(node instanceof ParagraphTag)
+			               {
+			            	  System.out.println(((ParagraphTag) node).getStringText());
+			               } 
 			               return false;
 			             }
 
@@ -73,7 +64,7 @@ public class Httpc {
 		}
 		  return nodeList;
 	}
-	public boolean startpage(String url)
+	public boolean startpage()
 	{
 	
 			if(urlset.size()>=100)
@@ -112,5 +103,10 @@ public class Httpc {
 		       }
 		}
 		return getpage(reurlli);
+	}
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		startpage();
 	}
 }
